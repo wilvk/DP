@@ -69,6 +69,9 @@
     <ClCompile Include="TestIntegrationAdo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestADOComHooks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

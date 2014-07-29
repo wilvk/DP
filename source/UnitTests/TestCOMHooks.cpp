@@ -12,7 +12,7 @@ TEST_CLASS(COMTest)
 {
 public:
 	
-	TEST_METHOD(COM_LoadTypeLib_LibIsNotNull)
+	TEST_METHOD(ADOCOM_LoadTypeLib_LibIsNotNull)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -29,7 +29,7 @@ public:
 		Assert::IsTrue(spTypeLib.p != NULL);
 	}
 
-	TEST_METHOD(COM_LoadTypeLib_HresultIsOK)
+	TEST_METHOD(ADOCOM_LoadTypeLib_HresultIsOK)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -46,7 +46,7 @@ public:
 		Assert::AreEqual(S_OK, hr);
 	}
 
-	TEST_METHOD(COM_GarbageParameter)
+	TEST_METHOD(ADOCOM_GarbageParameter)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -67,7 +67,7 @@ public:
 		Assert::IsFalse(listener.WasInvoked());
 	}
 
-	TEST_METHOD(COM_AddRefReleaseDoesTrace_AddRef_CorrectTrace)
+	TEST_METHOD(ADOCOM_AddRefReleaseDoesTrace_AddRef_CorrectTrace)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -87,7 +87,7 @@ public:
 		Assert::AreEqual("ITestInterface->AddRef()", listener.GetTrace());		
 	}
 
-	TEST_METHOD(COM_AddRefReleaseDoesTrace_AddRef_Correct_ReturnValue)
+	TEST_METHOD(ADOCOM_AddRefReleaseDoesTrace_AddRef_Correct_ReturnValue)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -107,7 +107,7 @@ public:
 		Assert::AreEqual(1, listener.GetReturnValue()); // hard coded in fake
 	}
 
-	TEST_METHOD(COM_AddRefReleaseDoesTrace_Release_Correct_Trace)
+	TEST_METHOD(ADOCOM_AddRefReleaseDoesTrace_Release_Correct_Trace)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -129,7 +129,7 @@ public:
 		Assert::AreEqual("ITestInterface->Release()", listener.GetTrace());		
 	}
 
-	TEST_METHOD(COM_AddRefReleaseDoesTrace_Release_Correct_ReturnValue)
+	TEST_METHOD(ADOCOM_AddRefReleaseDoesTrace_Release_Correct_ReturnValue)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -151,7 +151,7 @@ public:
 		Assert::AreEqual(1, listener.GetReturnValue()); // hard coded in fake
 	}
 
-	TEST_METHOD(COM_AddRefReleaseDoesTrace_QueryInterface_WasInvoked)
+	TEST_METHOD(ADOCOM_AddRefReleaseDoesTrace_QueryInterface_WasInvoked)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -174,7 +174,7 @@ public:
 		Assert::IsTrue(listener.WasInvoked());
 	}
 
-	TEST_METHOD(COM_AddRefReleaseDoesTrace_QueryInterface_CorrectTrace)
+	TEST_METHOD(ADOCOM_AddRefReleaseDoesTrace_QueryInterface_CorrectTrace)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -199,7 +199,7 @@ public:
 	}
 
 	
-	TEST_METHOD(TestVariant_CorrectTrace_Int)
+	TEST_METHOD(ADOCOM_TestVariant_CorrectTrace_Int)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -218,7 +218,7 @@ public:
 		Assert::AreEqual("ITestInterface->MethodVARIANT(100)", listener.GetTrace());
 	}
 	
-	TEST_METHOD(TestVariant_CorrectTrace_String)
+	TEST_METHOD(ADOCOM_TestVariant_CorrectTrace_String)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -237,7 +237,7 @@ public:
 		Assert::AreEqual("ITestInterface->MethodVARIANT(text)", listener.GetTrace());
 	}
 	
-	TEST_METHOD(TestVariant_CorrectTrace_Pointer)
+	TEST_METHOD(ADOCOM_TestVariant_CorrectTrace_Pointer)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -259,7 +259,7 @@ public:
 		Assert::AreEqual((LPCTSTR)strExpected, listener.GetTrace());
 	}
 
-	TEST_METHOD(COM_TestBSTR_CorrectTrace)
+	TEST_METHOD(ADOCOM_TestBSTR_CorrectTrace)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -278,7 +278,7 @@ public:
 		Assert::AreEqual("ITestInterface->MethodBSTR(\"text\")", listener.GetTrace());
 	}
 
-	TEST_METHOD(COM_TestBSTR_Correct_ReturnValue)
+	TEST_METHOD(ADOCOM_TestBSTR_Correct_ReturnValue)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -297,7 +297,7 @@ public:
 		Assert::AreEqual(0xbaad, listener.GetReturnValue());
 	}
 
-	TEST_METHOD(COM_Int_Correct_Trace)
+	TEST_METHOD(ADOCOM_Int_Correct_Trace)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -316,7 +316,7 @@ public:
 		Assert::AreEqual("ITestInterface->MethodInt(123)", listener.GetTrace());
 	}
 
-	TEST_METHOD(COM_Int_Correct_ReturnValue)
+	TEST_METHOD(ADOCOM_Int_Correct_ReturnValue)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -335,7 +335,7 @@ public:
 		Assert::AreEqual((int)S_OK, listener.GetReturnValue());
 	}
 
-	TEST_METHOD(COM_Long_Correct_Trace)
+	TEST_METHOD(ADOCOM_Long_Correct_Trace)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -354,7 +354,7 @@ public:
 		Assert::AreEqual("ITestInterface->MethodLong(12345678)", listener.GetTrace());
 	}
 
-	TEST_METHOD(COM_Float)
+	TEST_METHOD(ADOCOM_Float)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -373,7 +373,7 @@ public:
 		Assert::AreEqual("ITestInterface->MethodFloat(1.234567)", listener.GetTrace());
 	}
 	
-	TEST_METHOD(COM_QueryInterface_ITestInterface)
+	TEST_METHOD(ADOCOM_QueryInterface_ITestInterface)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -393,7 +393,7 @@ public:
 		Assert::AreEqual(0, listener.GetTrace().Find("ITestInterface->QueryInterface(ITestInterface"));
 	}
 
-	TEST_METHOD(COM_QueryInterface_IUnknown)
+	TEST_METHOD(ADOCOM_QueryInterface_IUnknown)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -414,7 +414,7 @@ public:
 		Assert::AreEqual(0, listener.GetTrace().Find("ITestInterface->QueryInterface(IUnknown"));
 	}
 
-	TEST_METHOD(COM_InOutInt)
+	TEST_METHOD(ADOCOM_InOutInt)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -436,7 +436,7 @@ public:
 		Assert::AreEqual((LPCTSTR)strExpect, listener.GetTrace());
 	}
 	
-	TEST_METHOD(COM_MultipleParams_ITestInterface_BTSTR)
+	TEST_METHOD(ADOCOM_MultipleParams_ITestInterface_BTSTR)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -455,7 +455,7 @@ public:
 		Assert::AreEqual("ITestInterface->MethodGUID_BSTR(ITestInterface, \"text\")", listener.GetTrace());
 	}
 	
-	TEST_METHOD(COM_MultipleParams_Double_BTSTR)
+	TEST_METHOD(ADOCOM_MultipleParams_Double_BTSTR)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -474,7 +474,7 @@ public:
 		Assert::AreEqual("ITestInterface->MethodDouble(1.234000, \"text\")", listener.GetTrace());
 	}
 
-	TEST_METHOD(COM_TestShort)
+	TEST_METHOD(ADOCOM_TestShort)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -493,7 +493,7 @@ public:
 		Assert::AreEqual("ITestInterface->MethodShort(128)", listener.GetTrace());
 	}
 
-	TEST_METHOD(COM_BOOL)
+	TEST_METHOD(ADOCOM_BOOL)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -512,7 +512,7 @@ public:
 		Assert::AreEqual("ITestInterface->MethodBOOL(0, \"foxy\")", listener.GetTrace());
 	}
 
-	TEST_METHOD(COM_QueryInterface_HooksOutgoing_ITestInterface)
+	TEST_METHOD(ADOCOM_QueryInterface_HooksOutgoing_ITestInterface)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -533,7 +533,7 @@ public:
 	}
 
 	
-	TEST_METHOD(COM_QueryInterface_HooksOutgoing_MethodMix)
+	TEST_METHOD(ADOCOM_QueryInterface_HooksOutgoing_MethodMix)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;
@@ -557,7 +557,7 @@ public:
 		Assert::AreEqual("ITestInterface2->MethodMix(1, \"text\")", listener.GetTrace());
 	}
 
-	TEST_METHOD(COM_Out_iidis)
+	TEST_METHOD(ADOCOM_Out_iidis)
 	{
 		LocalListener listener;
 		std::auto_ptr<FakeImpl> p;

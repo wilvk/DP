@@ -13,11 +13,7 @@
 #include <iostream>
 using namespace std;
 
-#ifdef ENVIRONMENT64
-	#import "c:\program files (x86)\common files\system\ado\msado28.tlb" no_namespace rename( "EOF", "A_EOF" ) 
-#else
-	#import "c:\program files\common files\system\ado\msado28.tlb" no_namespace rename( "EOF", "A_EOF" ) 
-#endif
+#import "c:\program files\common files\system\ado\msado26.tlb" no_namespace auto_search rename( "EOF", "A_EOF" ) 
 
 bool DemoAdo(_bstr_t strConnectionString)
 {
@@ -45,7 +41,7 @@ bool DemoAdo(_bstr_t strConnectionString)
 		_RecordsetPtr pRecordSet(__uuidof(Recordset));
 		pRecordSet->PutRefSource(pCommand);
 
-		_variant_t vNull(DISP_E_PARAMNOTFOUND, VT_ERROR); 
+		_variant_t vNull(DISP_E_PARAMNOTFOUND, VT_ERROR);
 
 		pRecordSet->Open(vNull, vNull, adOpenDynamic, adLockOptimistic, adCmdText);
 
@@ -53,25 +49,25 @@ bool DemoAdo(_bstr_t strConnectionString)
 		if (!pRecordSet->A_EOF)
 		{
 			_Recordset **ptrResults = NULL;
-			pRecordSet->QueryInterface(__uuidof(_Recordset),(void **) ptrResults);
-
+			pRecordSet->QueryInterface(__uuidof(_Recordset), (void **)ptrResults);
+			
 			_variant_t vField(_T("testDate"));
 			_variant_t vResult;
 			vResult = pRecordSet->GetFields()->GetItem(vField)->Value;
 			_bstr_t strTimeStamp(vResult);
-			strncpy(szTimeStamp, (char*) strTimeStamp, 63);
+			strncpy(szTimeStamp, (char*)strTimeStamp, 63);
 			if (szTimeStamp > 0)
 			{
 				char szFeedback[256] = { 0 };
-                sprintf(szFeedback, "SQL timestamp is: %s", szTimeStamp);
-				cout << endl << szFeedback;
+				sprintf(szFeedback, "SQL timestamp is: %s", szTimeStamp);
+				cout << "Result: " << szFeedback;
 			}
 		}
 
 		pRecordSet->Close();
 		pConnection->Close();
 	}
-	catch (_com_error& exception)
+	catch (_com_error&)
 	{
 		::CoUninitialize();
 		return false;
@@ -111,8 +107,8 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	char * connString = GetConnectionString();
 	cout << "Connection String: " << connString;
 
-	//HINSTANCE h = LoadLibrary(L"DPInfiltrator.dll");
-	//ATLASSERT(NULL != h);
+	HINSTANCE h = LoadLibrary(L"DPInfiltrator.dll");
+	ATLASSERT(NULL != h);
 
 	DemoAdo(connString);
 

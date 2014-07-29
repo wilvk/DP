@@ -1,4 +1,4 @@
-// portions borrowed from http://www.codeproject.com/Articles/6917/ADO-level-tutorial
+// portions taken from http://www.codeproject.com/Articles/6917/ADO-level-tutorial
 
 #pragma once
 

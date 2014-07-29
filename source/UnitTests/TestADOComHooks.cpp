@@ -4,9 +4,11 @@
 #include "ISC.h"
 #include "FakeImpl.h"
 
+#define MSADO_TLB "c:\\Program Files (x86)\\Common Files\\System\\ado\\msado28.tlb"
+
 #include "CppUnitTest.h"
 
-#import "c:\program files\common files\system\ado\msado28.tlb" no_namespace auto_search rename( "EOF", "A_EOF" ) 
+#import MSADO_TLB no_namespace auto_search rename( "EOF", "A_EOF" ) 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -14,29 +16,40 @@ TEST_CLASS(COMTest)
 {
 public:
 	
-	TEST_METHOD(COM_LoadTypeLib_LibIsNotNull)
+	TEST_METHOD(ADOCOM1_LoadTypeLib_LibIsNotNull)
 	{
-		LocalListener listener;
-		std::auto_ptr<Connection> p;
+		/*LocalListener listener;
+		std::auto_ptr<FakeImpl> p;
 		CDynHooker hook;
-		
-		
-		//CComPtr<ITypeLib> spTypeLib;
-		CComPtr<Connection> spTypeLib;
-		
+		CComPtr<ITypeLib> spTypeLib;
 		HRESULT hr;
 
-		//hr = LoadTypeLibEx(CComBSTR("UnitTests.tlb"), REGKIND_REGISTER, &spTypeLib);
-
-		hr = spTypeLib.CreateInstance(__uuidof(Connection));
-
+		hr = LoadTypeLibEx(CComBSTR("UnitTests.tlb"), REGKIND_REGISTER, &spTypeLib);
 		ISC::GetISC().AddTypeLibrary(spTypeLib);
 
-		p = std::auto_ptr<Connection>(new FakeImpl());
+		p = std::auto_ptr<FakeImpl>(new FakeImpl());
+		hook.HookInterface(reinterpret_cast<IUnknown*>(p.get()), __uuidof(ITestInterface), &listener);
+
+		Assert::IsTrue(spTypeLib.p != NULL);*/
+
+		LocalListener listener;
+		std::auto_ptr<Connection> pConnection;
+		CDynHooker hook;		
+		CComPtr<ITypeLib> spTypeLib;
+
+		HRESULT hr;
+
+		hr = LoadTypeLibEx(CComBSTR(MSADO_TLB), REGKIND_REGISTER, &spTypeLib);
+
+		std::auto_ptr<Connection> p = std::auto_ptr<Connection>();
+
 		hook.HookInterface(reinterpret_cast<IUnknown*>(p.get()), __uuidof(Connection), &listener);
 
 		Assert::IsTrue(spTypeLib.p != NULL);
+
 	}
+
+	/*
 
 	TEST_METHOD(COM_LoadTypeLib_HresultIsOK)
 	{
@@ -586,5 +599,5 @@ public:
 		listener.Reset();
 
 		Assert::AreEqual("", listener.GetTrace());
-	}
+	}*/
 };
